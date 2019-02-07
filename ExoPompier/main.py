@@ -32,19 +32,44 @@ class Pompier:
             self.position[1] += 1
         else:
             self.busy = 5
-            b.eteindre()
+            b.eteindre(self.position)
     def __repr__(self):
         return "Pompier : " + str(self.position)
+
+import numpy as np
+from tkinter import *
 
 class Board:
     def __init__(self):
         self.size = [15,15]
-        self.liste_pompier = [Pompier([4,3])]
+        self.liste_pompier = [Pompier([4,3]),Pompier([5,11])]
         self.liste_feux = [[2,1], [5,3], [12,8]]
-    def eteindre(self):
-        del self.liste_feux[0]
+    def eteindre(self, position):
+        del self.liste_feux[self.liste_feux.index(position)]
+    def feu_le_plus_proche(self, pompier):
+        distance_min = np.linalg.norm(
+                np.array(pompier.position) - np.array(self.liste_feux[0]), ord=1)
+        result = self.liste_feux[0]
+        """
+        On suppose que le feu le plus proche est le premier feu
+        On cherche dans la liste de feu si un feu est plus proche
+        """
+        for feu in self.liste_feux:
+            distance = np.linalg.norm(
+                np.array(pompier.position) - np.array(feu), ord=1)
+            if distance < distance_min:
+                """
+                Si un feu est plus proche que celui de notre hypothèse
+                On met a jour notre hypothèse
+                """
+                result = feu
+                distance_min = distance
+        return result
+    
     def run(self):
-        self.liste_pompier[0].se_deplacer(self.liste_feux[0], self)
+        for pompier in self.liste_pompier:
+            pompier.se_deplacer(
+                    self.feu_le_plus_proche(pompier), self)
     
     def display(self):
         for i in range(self.size[0]):
