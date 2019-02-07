@@ -35,7 +35,12 @@
   <section class="container">
     <h1 class="title">Salut tout le monde</h1>
     <h3>Sous titre</h3>
-    <p>Lorem ipsum <span class="ma-classe">lkgslkn</span> dolor sit amet, consectetur adipisicing elit. Perspiciatis quos vitae commodi sit, voluptas eaque adipisci vero repellat molestiae. Nisi dolores sequi harum expedita quia! Rem ipsa impedit necessitatibus itaque?</p>   
+    <p>Lorem ipsum <span class="ma-classe">lkgslkn</span> dolor sit amet, consectetur adipisicing elit. Perspiciatis quos vitae commodi sit, voluptas eaque adipisci vero repellat molestiae. Nisi dolores sequi harum expedita quia! Rem ipsa impedit necessitatibus itaque?</p>
+    <ul>
+    {% for personne in liste %}
+      <li>{{ personne.firstname}} - {{ personne.lastname}}</li>
+    {% endfor %}
+    </ul>
   </section>
 
 
@@ -43,7 +48,7 @@
     <form action="/form" method="POST">
       <div class="form-group">
         <label>Prenom</label>
-        <input name="firstname" type="text" class="form-control"  placeholder="Ton prenom">
+        <input name="firstname" type="text" class="form-control" placeholder="Ton prenom">
       </div>
       <div class="form-group">
         <label>Nom</label>
