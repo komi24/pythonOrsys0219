@@ -37,13 +37,39 @@ class Pompier:
         return "Pompier : " + str(self.position)
 
 import numpy as np
-from tkinter import *
+from tkinter import Tk, Canvas, PhotoImage
 
 class Board:
     def __init__(self):
         self.size = [15,15]
         self.liste_pompier = [Pompier([4,3]),Pompier([5,11])]
-        self.liste_feux = [[2,1], [5,3], [12,8]]
+        self.liste_feux = [[2,1], [5,3], [12,8], [2,8], [14,12]]
+        self.fen = Tk()
+        self.canvas = Canvas(self.fen, 
+                             width=self.size[0]*32,
+                             height=self.size[1]*32)
+        self.canvas.pack()
+        self.photo_pomp = PhotoImage(file="sm-pomp.gif")
+        self.photo_feu = PhotoImage(file="sm-feu.gif")
+        
+        self.draw_everything()
+        print("ok")
+        self.fen.mainloop()
+
+    def draw_everything(self):
+        self.run()
+        self.canvas.delete("all")
+        for pompier in self.liste_pompier:
+            self.canvas.create_image(pompier.position[0]*32 + 16,
+                                     pompier.position[1]*32 + 16,
+                                     image=self.photo_pomp)
+        for feu in self.liste_feux:
+            self.canvas.create_image(feu[0]*32 + 16,
+                                     feu[1]*32 + 16,
+                                     image=self.photo_feu)
+        print(self.liste_feux)
+        self.canvas.after(500, self.draw_everything)
+        
     def eteindre(self, position):
         del self.liste_feux[self.liste_feux.index(position)]
     def feu_le_plus_proche(self, pompier):
