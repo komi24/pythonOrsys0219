@@ -38,7 +38,7 @@
     <p>Lorem ipsum <span class="ma-classe">lkgslkn</span> dolor sit amet, consectetur adipisicing elit. Perspiciatis quos vitae commodi sit, voluptas eaque adipisci vero repellat molestiae. Nisi dolores sequi harum expedita quia! Rem ipsa impedit necessitatibus itaque?</p>
     <ul>
     {% for personne in liste %}
-      <li>{{ personne.firstname}} - {{ personne.lastname}}</li>
+      <li><a href="/personne/{{personne.id}}"> {{ personne.firstname}} - {{ personne.lastname}}</a></li>
     {% endfor %}
     </ul>
   </section>
