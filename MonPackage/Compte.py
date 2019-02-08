@@ -1,3 +1,6 @@
+class DecouvertError(Exception):
+    pass
+
 class Compte:
     """
     attribut :
@@ -11,3 +14,7 @@ class Compte:
         self.proprio = proprio
         self.solde = solde
         
+    def retrait(self, valeur):
+        if valeur > self.solde:
+            raise DecouvertError()
+        self.solde -= valeur
