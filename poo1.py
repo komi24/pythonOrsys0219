@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+"""
+Introduction à la POO
+Exemple de la classe Personne
+"""
+
 class Personne:
     def __init__(self, firstname, lastname):
         self.prenom = firstname

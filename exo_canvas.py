@@ -3,6 +3,11 @@
 from tkinter import Tk, Canvas, PhotoImage
 from time import sleep
 
+"""
+Nous allons afficher une image à l'intérieur 
+de notre fentêre grace aux Canvas
+"""
+
 fen = Tk()
 
 size = (15,15)

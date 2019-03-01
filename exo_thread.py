@@ -1,3 +1,7 @@
+"""
+Exemple d'utilisation de Thread et Locks
+"""
+
 from threading import Thread, Lock
 import time
 import random

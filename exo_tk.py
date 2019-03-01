@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+"""
+Introduction à Tkinter pour créer des fenêtres.
+"""
+
+
 from tkinter import Tk, Label, Button, Frame
 from tkinter import TOP, LEFT, BOTTOM, RIGHT, StringVar
 from itertools import product
